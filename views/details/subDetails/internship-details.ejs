@@ -1,0 +1,145 @@
+
+<div class="modal fade" id="internDetailModal" tabindex="-1" aria-labelledby="internModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="input_details_box modal-content">
+            <div style="text-align: right;">
+                <button class="btn button" type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="heading">
+                <h1 class="modal-title" id="internModalLabel">Internship Details</h1>
+            </div>
+
+            <div class="modal-body">
+                <form action="/internship/details" method="POST">
+                    <div class="formControl container">
+                        <div class="input-gap">
+                            <label for="profile">Profile</label>
+                            <input type="text" id="profile" name="internProfile" placeholder="e.g. sales and marketing">
+                        </div>
+
+                        <div class="input-gap">
+                            <label for="organisation">Organisation</label>
+                            <input type="text" id="organisation" name="internOrganisation"
+                                placeholder="e.g. Internshala">
+                        </div>
+
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="internLocation" placeholder="e.g. Mumbai" />
+                            </div>
+                            <div class="col">
+                                <input class="form-check-input" type="checkbox" id="wfh" name="wfh"
+                                    value="work from home">
+                                <input type="hidden" name="wfh" value="offline work">
+                                <label for="wfh">Is work from home</label>
+                            </div>
+                        </div>
+
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="startDate">Start date</label>
+                                <input class="form-control" type="date" id="startDate" name="internStartDate"
+                                    placeholder="Choose date" />
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End date</label>
+                                <input class="form-control" type="date" name="internEndDate" id="endDate"
+                                    placeholder="Choose date" />
+                            </div>
+                        </div>
+
+                        <div class="input-gap">
+                            <label for="disc">Discription</label>
+                            <textarea maxlength="250" name="internDiscription" id="disc" cols="10" rows="8" placeholder="
+        Short discription of work done.
+            
+        Pro tip:
+          - Mention key internship responsibilities in max 3-4 points
+          - Use action verbs: Built, Led, Drove, Conceptualized, Learnt, etc."></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="btn-div">
+                        <button class="btn btn-outline-info" type="submit">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="editInternDetailModal" tabindex="-1" aria-labelledby="internModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="input_details_box modal-content">
+            <div style="text-align: right;">
+                <button class="btn button" type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="heading">
+                <h1 class="modal-title" id="internModalLabel">Internship Details</h1>
+            </div>
+
+            <div class="modal-body">
+                <form action="/internship/editDetails" method="POST">
+                    <input type="hidden" name="editDetailsId">
+                    <div class="formControl container">
+                        <div class="input-gap">
+                            <label for="profile">Profile</label>
+                            <input type="text" id="profile" name="internProfile" placeholder="e.g. sales and marketing">
+                        </div>
+
+                        <div class="input-gap">
+                            <label for="organisation">Organisation</label>
+                            <input type="text" id="organisation" name="internOrganisation"
+                                placeholder="e.g. Internshala">
+                        </div>
+
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="internLocation" placeholder="e.g. Mumbai" />
+                            </div>
+                            <div class="col">
+                                <input class="form-check-input" type="checkbox" id="wfh" name="wfh"
+                                    value="work from home">
+                                <input type="hidden" name="wfh" value="offline work">
+                                <label for="wfh">Is work from home</label>
+                            </div>
+                        </div>
+
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="startDate">Start date</label>
+                                <input class="form-control" type="date" id="startDate" name="internStartDate"
+                                    placeholder="Choose date" />
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End date</label>
+                                <input class="form-control" type="date" name="internEndDate" id="endDate"
+                                    placeholder="Choose date" />
+                            </div>
+                        </div>
+
+                        <div class="input-gap">
+                            <label for="disc">Discription</label>
+                            <textarea maxlength="250" name="internDiscription" id="disc" cols="10" rows="8" placeholder="
+        Short discription of work done.
+            
+        Pro tip:
+          - Mention key internship responsibilities in max 3-4 points
+          - Use action verbs: Built, Led, Drove, Conceptualized, Learnt, etc."></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="btn-div">
+                        <button class="btn btn-outline-info" type="submit">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

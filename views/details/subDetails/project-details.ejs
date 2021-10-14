@@ -1,0 +1,52 @@
+<div class="modal fade" id="projectDetailModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="input_details_box modal-content">
+            <div style="text-align: right;">
+                <button class="btn button" type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="heading">
+                <h1 class="modal-title" id="projectModalLabel">Academic/Personal Projects Details</h1>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="formControl container">
+                        <div class="input-gap">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="projectTitle"
+                                placeholder="e.g. Optical character recognition">
+                        </div>
+
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="startDate">Start date</label>
+                                <input class="form-control" type="date" id="projectStartDate" name="startDate"
+                                    placeholder="Choose date" />
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End date</label>
+                                <input class="form-control" type="date" name="projectEndDate" id="endDate"
+                                    placeholder="Choose date" />
+                            </div>
+                        </div>
+
+                        <div class="input-gap">
+                            <label for="disc">Discription</label>
+                            <textarea maxlength="250" name="projectDisc" id="disc" cols="10" rows="8"
+                                placeholder="short discription about project"></textarea>
+                        </div>
+
+                        <div class="input-gap">
+                            <label for="projectLink">Project link</label>
+                            <input type="url" name="projectLink" id="projectLink"
+                                placeholder="e.g. https://myprojectlink.com">
+                        </div>
+
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn btn-outline-info" type="submit">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+
+<div class="modal fade" id="userDetailModal" tabindex="-1" aria-labelledby="userDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="input_details_box modal-content">
+      <div style="text-align: right">
+        <button class="btn button" data-bs-dismiss="modal" type="button">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="heading">
+        <h1 class="modal-title" id="userDetailModalLabel">Personal Details</h1>
+      </div>
+
+      <div class="modal-body">
+        <form action="/personal/details" method="POST">
+            <div class="formControl container">
+              <div class="input-gap row">
+                <div class="col">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="first_name" placeholder="First Name"
+                    value="<%= oldInput.firstName %>" />
+                  <p class="errorMsg">
+                    <%= errorMsg.find(e => e.param == "first_name") ?
+                      errorMsg.find(e => e.param == "first_name").msg : ""; %>
+                  </p>
+                </div>
+                <div class="col">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="last_name" placeholder="Last Name"
+                    value="<%= oldInput.lastName %>" />
+                </div>
+              </div>
+              <div class="input-gap row">
+                <div class="col">
+                  <label for="phoneNum">Phone No.</label>
+                  <input type="tel" id="phoneNum" name="phoneNum" placeholder="+91 123 456 7890"
+                    value="<%= oldInput.phoneNo %>" />
+                  <p class="errorMsg">
+                    <%= errorMsg.find(e => e.param == "phoneNum") ?
+                      errorMsg.find(e => e.param == "phoneNum").msg : ""; %>
+                  </p>
+                </div>
+                <div class="col">
+                  <label for="emailId">Email Id</label>
+                  <input type="email" id="emailId" name="emailId" placeholder="Email" value="<%= oldInput.email %>" />
+                  <p class="errorMsg">
+                    <%= errorMsg.find(e => e.param == "emailId") &&
+                      errorMsg.find(e => e.param == "emailId").msg; %>
+                  </p>
+                </div>
+              </div>
+              <div class="input-gap">
+                <label for="address">address</label>
+                <textarea name="address" id="address" cols="10" rows="5" placeholder="Address"><%= oldInput.address %></textarea>
+                <p class="errorMsg">
+                  <%= errorMsg.find(e => e.param == "address") && errorMsg.find(e => e.param == "address").msg; %>
+                </p>
+              </div>
+            </div>
+          <div class="btn-div">
+            <button class="btn btn-outline-info" type="submit">save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

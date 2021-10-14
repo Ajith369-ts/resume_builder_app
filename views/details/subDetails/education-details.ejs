@@ -1,0 +1,41 @@
+<div class="modal fade" id="eduDetailModal" tabindex="-1" aria-labelledby="education" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="input_details_box modal-content" style="text-align: center;">
+            <div class="heading">
+                <h1 class="modal-title" id="education">Add Education</h1>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#beDegDetailModal">+ Add graduation</button>
+                    <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#secDetailModal">+ Add secondary(X)</button>
+                    <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#postDetailModal">+ Add post graduation</button>
+                    <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#diplomaDetailModal">+ Add diploma</button>
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn button" type="button" data-bs-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- B.E Degree -->
+
+<%- include("./eduSub/beDegree") %> 
+
+<!-- secondary -->
+
+<%- include("./eduSub/secondary") %> 
+
+<!-- post graduation -->
+
+<%- include("./eduSub/postGrad") %> 
+
+<!-- diploma -->
+
+<%- include("./eduSub/diploma") %> 

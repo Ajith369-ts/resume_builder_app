@@ -1,0 +1,20 @@
+
+<div class="resume-container">
+    <% links.forEach(element => { %>  
+        <div class="details_table row">
+            <div class="col">
+                <h4><%= element.heading %> </h4>
+            </div>
+            <div class="col col-7">
+                <button type="button" class="btn button" data-bs-toggle="modal" data-bs-target="<%= element.id %>">+ <%= element.linkName %> </button>
+            </div>
+        </div>
+
+        <hr class="horizontal_divider">
+    <% }) %>
+
+    <%- include("./linkSubFolder/personal-link.ejs"); -%>
+
+    <%- include("./linkSubFolder/intern-link.ejs"); -%>
+
+</div>

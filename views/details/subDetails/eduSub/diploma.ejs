@@ -1,0 +1,65 @@
+
+<div class="modal fade" id="diplomaDetailModal" tabindex="-1" aria-labelledby="diplomaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="input_details_box modal-content">
+            <div style="text-align: right;">
+                <button class="btn button" type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="heading">
+                <h1 class="modal-title" id="diplomaModalLabel">Education Details</h1>
+            </div>
+
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="formControl container">
+                        <div class="input-gap row">
+                            <p>Diploma status</p>
+                            <div class="col">
+                                <label for="pursuing">Pursuing</label>
+                                <input type="radio" id="pursuing" name="radio_input" value="Pursuing">
+                            </div>
+                            <div class="col">
+                                <label for="completed">Completed</label>
+                                <input type="radio" id="completed" name="radio_input" value="Completed">
+                            </div>
+                        </div>
+                        <div class="input-gap">
+                            <label for="">College</label>
+                            <input type="text" placeholder="e.g. Hindu College " />
+                        </div>
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="">Start Year</label>
+                                <input type="number" min="1900" max="2099" />
+                            </div>
+                            <div class="col">
+                                <label for="">End Year</label>
+                                <input type="number" min="1900" max="2099" />
+                            </div>
+                        </div>
+                        <div class="input-gap">
+                            <div>
+                                <label for="">Stream</label>
+                                <input type="text" placeholder="e.g. creative writting" />
+                            </div>
+                        </div>
+                        <div class="input-gap row">
+                            <div class="col">
+                                <label for="scale">Performance Scale</label>
+                                <select class="form-select" name="perf_scale" id="scale">
+                                    <option value="percent">Percentage</option>
+                                    <option value="10">CGPA (scale of 10)</option>
+                                    <option value="5">CGPA (scale of 5)</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="perf">Performance</label>
+                                <input type="number" id="perf" placeholder="0.00" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
