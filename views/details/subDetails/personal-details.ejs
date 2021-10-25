@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="userDetailModal" tabindex="-1" aria-labelledby="userDetailModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="input_details_box modal-content">
@@ -12,51 +11,54 @@
       </div>
 
       <div class="modal-body">
-        <form action="/personal/details" method="POST">
-            <div class="formControl container">
-              <div class="input-gap row">
-                <div class="col">
-                  <label for="firstName">First Name</label>
-                  <input type="text" id="firstName" name="first_name" placeholder="First Name"
-                    value="<%= oldInput.firstName %>" />
-                  <p class="errorMsg">
-                    <%= errorMsg.find(e => e.param == "first_name") ?
-                      errorMsg.find(e => e.param == "first_name").msg : ""; %>
-                  </p>
-                </div>
-                <div class="col">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" name="last_name" placeholder="Last Name"
-                    value="<%= oldInput.lastName %>" />
-                </div>
+        <form id="userDetailsForm" class="needs-validation" action="/personal/details" method="POST" novalidate>
+          <div class="formControl container">
+            <div class="input-gap row">
+              <div class="col">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control has-validation" id="firstName" name="first_name" placeholder="First Name"
+                  value="<%= oldInput.firstName %>" required/>
+                  <div id="firstName" class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div id="firstName" class="invalid-feedback">
+                    Please provide a valid Username.
+                  </div>
               </div>
-              <div class="input-gap row">
-                <div class="col">
-                  <label for="phoneNum">Phone No.</label>
-                  <input type="tel" id="phoneNum" name="phoneNum" placeholder="+91 123 456 7890"
-                    value="<%= oldInput.phoneNo %>" />
-                  <p class="errorMsg">
-                    <%= errorMsg.find(e => e.param == "phoneNum") ?
-                      errorMsg.find(e => e.param == "phoneNum").msg : ""; %>
-                  </p>
-                </div>
-                <div class="col">
-                  <label for="emailId">Email Id</label>
-                  <input type="email" id="emailId" name="emailId" placeholder="Email" value="<%= oldInput.email %>" />
-                  <p class="errorMsg">
-                    <%= errorMsg.find(e => e.param == "emailId") &&
-                      errorMsg.find(e => e.param == "emailId").msg; %>
-                  </p>
-                </div>
+              <div class="col">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control has-validation" id="lastName" name="last_name" placeholder="Last Name"
+                  value="<%= oldInput.lastName %>" required/>
               </div>
-              <div class="input-gap">
-                <label for="address">address</label>
-                <textarea name="address" id="address" cols="10" rows="5" placeholder="Address"><%= oldInput.address %></textarea>
+            </div>
+            <div class="input-gap row">
+              <div class="col">
+                <label for="phoneNum" class="form-label">Phone No.</label>
+                <input type="tel" class="form-control has-validation" id="phoneNum" name="phoneNum" placeholder="+91 123 456 7890"
+                  value="<%= oldInput.phoneNo %>" required/>
                 <p class="errorMsg">
-                  <%= errorMsg.find(e => e.param == "address") && errorMsg.find(e => e.param == "address").msg; %>
+                  <%= errorMsg.find(e=> e.param == "phoneNum") ?
+                    errorMsg.find(e => e.param == "phoneNum").msg : ""; %>
+                </p>
+              </div>
+              <div class="col">
+                <label for="emailId" class="form-label">Email Id</label>
+                <input type="email" class="form-control has-validation" id="emailId" name="emailId" placeholder="Email" value="<%= oldInput.email %>" />
+                <p class="errorMsg">
+                  <%= errorMsg.find(e=> e.param == "emailId") &&
+                    errorMsg.find(e => e.param == "emailId").msg; %>
                 </p>
               </div>
             </div>
+            <div class="input-gap">
+              <label for="address" class="form-label">address</label>
+              <textarea name="address" class="form-control is-valid has-validation" id="address" cols="10" rows="5"
+                placeholder="Address"><%= oldInput.address %></textarea>
+              <p class="errorMsg">
+                <%= errorMsg.find(e=> e.param == "address") && errorMsg.find(e => e.param == "address").msg; %>
+              </p>
+            </div>
+          </div>
           <div class="btn-div">
             <button class="btn btn-outline-info" type="submit">save</button>
           </div>

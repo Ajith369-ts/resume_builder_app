@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const detailsSchema = new mongoose.Schema({
 
     // Personal Details
-    personalDetails: {
+    personalDetails: [{
         firstName: {
           type: String
         },
@@ -19,7 +19,7 @@ const detailsSchema = new mongoose.Schema({
         address: {
           type: String
         }
-    },
+    }],
     // Education details
     // educationDetails: {
     //   edu: [{

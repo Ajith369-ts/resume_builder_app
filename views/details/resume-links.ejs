@@ -1,5 +1,15 @@
 
 <div class="resume-container">
+
+    <div class="details_table row">
+        <div class="col">
+            <h1>Resume</h1>
+        </div>
+        <div class="col">
+            <a href="/download/61423166f70a347a85d1c85d">Download</a>
+        </div>
+    </div>
+
     <% links.forEach(element => { %>  
         <div class="details_table row">
             <div class="col">
@@ -13,8 +23,9 @@
         <hr class="horizontal_divider">
     <% }) %>
 
-    <%- include("./linkSubFolder/personal-link.ejs"); -%>
-
-    <%- include("./linkSubFolder/intern-link.ejs"); -%>
+    <% link.forEach(element => { %>    
+        <%- include(`./linkSubFolder/${element}-link.ejs`); -%>
+        <hr class="horizontal_divider">
+    <% }) %>
 
 </div>

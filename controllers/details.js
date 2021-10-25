@@ -8,6 +8,8 @@ const fs = require("fs");
 const { validationResult } = require("express-validator");
 
 exports.getFullDetails = (req, res, next) => {
+  const link = ["personal", "intern", "training"];
+
   const links = [
     {
       heading: "PERSONAL DETAILS",
@@ -43,11 +45,14 @@ exports.getFullDetails = (req, res, next) => {
 
   Details.findOne({ _id: "61423166f70a347a85d1c85d" })
     .then((result) => {
+      const user = result.personalDetails;
       const intern = result.internshipDetails;
       const personal = result.personalDetails;
+      const training = result.trainingDetails;
 
       res.render("details/full-details", {
         pageTitle: "Details",
+        link: link,
         links: links,
         errorMsg: [],
         oldInput: {
@@ -57,8 +62,10 @@ exports.getFullDetails = (req, res, next) => {
           email: "",
           address: "",
         },
+        userDetails: user ? user : [],
         intern: intern ? intern : [],
-        personal: personal
+        personal: personal,
+        training: training ? training : [],
       });
     })
     .catch((err) => {
@@ -66,26 +73,23 @@ exports.getFullDetails = (req, res, next) => {
     });
 };
 
-exports.postPersonalDetails = (req, res, next) => {
 
-}
+exports.deleteItems = (req, res, next) => {
+  const contentId = req.params.contentId;
+  const delId = req.params.delId;
 
-exports.postPersonalDetails = (req, res, next) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.render("details/full-details", {
-      pageTitle: "Details",
-      errorMsg: errors.array(),
-      oldInput: {
-        firstName: req.body.first_name,
-        lastName: req.body.last_name,
-        phoneNo: req.body.phoneNum,
-        email: req.body.emailId,
-        address: req.body.address,
-      },
+  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+    .then((result) => {
+      result[`${contentId}`].pull({ _id: delId });
+      return result.save();
+    })
+    .then(() => {
+      res.status(200).json({ message: "success" });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: "Deleting content failed" });
     });
-  }
+};
 
   // const resumeName = "resume" + ".pdf";
   // const resumePath = path.join("data", "resumes", resumeName);
@@ -215,6 +219,6 @@ exports.postPersonalDetails = (req, res, next) => {
   //   .catch((err) => {
   //     console.log(err);
   //   });
-};
+// };
 
 exports.postEducationDetails = (req, res, next) => {};

@@ -13,45 +13,45 @@
                 <form action="/internship/details" method="POST">
                     <div class="formControl container">
                         <div class="input-gap">
-                            <label for="profile">Profile</label>
-                            <input type="text" id="profile" name="internProfile" placeholder="e.g. sales and marketing">
+                            <label for="profile" class="form-label">Profile</label>
+                            <input type="text" class="form-control has-validation" id="profile" name="internProfile" placeholder="e.g. sales and marketing">
                         </div>
 
                         <div class="input-gap">
-                            <label for="organisation">Organisation</label>
-                            <input type="text" id="organisation" name="internOrganisation"
+                            <label for="organisation" class="form-label">Organisation</label>
+                            <input type="text" class="form-control has-validation" id="organisation" name="internOrganisation"
                                 placeholder="e.g. Internshala">
                         </div>
 
                         <div class="input-gap row">
                             <div class="col">
-                                <label for="location">Location</label>
-                                <input type="text" id="location" name="internLocation" placeholder="e.g. Mumbai" />
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control has-validation" id="location" name="internLocation" placeholder="e.g. Mumbai" />
                             </div>
                             <div class="col">
                                 <input class="form-check-input" type="checkbox" id="wfh" name="wfh"
                                     value="work from home">
                                 <input type="hidden" name="wfh" value="offline work">
-                                <label for="wfh">Is work from home</label>
+                                <label for="wfh" class="form-label">Is work from home</label>
                             </div>
                         </div>
 
                         <div class="input-gap row">
                             <div class="col">
-                                <label for="startDate">Start date</label>
+                                <label for="startDate" class="form-label">Start date</label>
                                 <input class="form-control" type="date" id="startDate" name="internStartDate"
                                     placeholder="Choose date" />
                             </div>
                             <div class="col">
-                                <label for="endDate">End date</label>
+                                <label for="endDate" class="form-label">End date</label>
                                 <input class="form-control" type="date" name="internEndDate" id="endDate"
                                     placeholder="Choose date" />
                             </div>
                         </div>
 
                         <div class="input-gap">
-                            <label for="disc">Discription</label>
-                            <textarea maxlength="250" name="internDiscription" id="disc" cols="10" rows="8" placeholder="
+                            <label for="disc" class="form-label">Discription</label>
+                            <textarea class="form-control has-validation" maxlength="250" name="internDiscription" id="disc" cols="10" rows="8" placeholder="
         Short discription of work done.
             
         Pro tip:

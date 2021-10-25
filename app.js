@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const path = require("path");
 
@@ -35,9 +36,7 @@ const localUrl = `mongodb://localhost:27017/${process.env.MONGO_DB_NAME}`;
 mongoose
   .connect(localUrl, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-
+    useUnifiedTopology: true
   })
   .then((result) => {
     app.listen(3000, () => {

@@ -73,22 +73,6 @@ exports.postEditInternDetails = (req, res, next) => {
     });
 };
 
-exports.deleteInternItem = (req, res, next) => {
-  const delId = req.params.contentId;
-
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
-    .then((result) => {
-      result.internshipDetails.pull({ _id: delId });
-      return result.save();
-    })
-    .then(() => {
-      res.status(200).json({ message: "success" });
-    })
-    .catch((err) => {
-      res.status(500).json({ message: "Deleting content failed" });
-    });
-};
-
 exports.internOldContent = (req, res, next) => {
   const editContentId = req.params.editContentId;
 

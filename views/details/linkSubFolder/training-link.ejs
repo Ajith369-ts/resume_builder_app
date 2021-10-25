@@ -1,0 +1,29 @@
+
+    <div class="details_table row">
+        <div class="col">
+            <h4>TRAININGS/ COURSES</h4>
+        </div>
+        <div class="col col-7">
+            <% training.slice().reverse().forEach(element => { %>               
+            <div class="detailDiscBox" style="position: relative;">
+                <div class="icon-btn-position">
+                    <!-- Edit btn -->
+                    <input type="hidden" name="editId" value="<%= element._id %>">
+                    <button type="button" class="btn delbtn" onclick="trainingOldInput(this)" data-bs-toggle="modal" data-bs-target="#editTrainingDetailModal"><i class="fas fa-pen"></i></button>
+                    <!-- Delete btn -->
+                    <input type="hidden" name="delId" value="<%= element._id %>">
+                    <button type="button" class="btn delbtn" value="trainingDetails" onclick="deleteBox(this)"><i class="fas fa-trash-alt"></i></button>
+
+                </div>
+                <div class="detailDisc">
+                    <p class="line" style="font-weight: 600; color: #333;"><%= element.trainProgram %> </p>
+                    <p class="line"><%= element.trainingOrganisation %> </p>
+                    <p class="line"><%= element.trainingLocation %> </p>
+                    <p class="line"><%= element.startDate.toString().slice(4, 15) +" - "+ element.endDate.toString().slice(4, 15) %> </p>
+                </div>
+            </div>
+            <% }) %>
+            <button type="button" class="btn button" data-bs-toggle="modal" data-bs-target="#trainingDetailModal" onclick="clearInput()">+ Add training/ course</button>
+        </div>
+
+    </div>

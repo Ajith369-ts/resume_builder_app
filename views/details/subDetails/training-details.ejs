@@ -69,3 +69,76 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="editTrainingDetailModal" tabindex="-1" aria-labelledby="trainingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="input_details_box modal-content">
+            <div style="text-align: right;">
+                <button class="btn button" type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="tab">
+                <div class="heading">
+                    <h1 class="modal-title" id="trainingModalLabel">Training/Courses Details</h1>
+                </div>
+                <div>
+                    <div class="modal-body">
+                        <form action="/training/details" method="post">
+                        <input type="hidden" name="editDetailsId">
+                            <div class="formControl container">
+                                <div class="input-gap">
+                                    <label for="trainProgram">Training program</label>
+                                    <input type="text" id="trainProgram" name="trainProgram"
+                                        placeholder="e.g. Analytics">
+                                </div>
+
+                                <div class="input-gap">
+                                    <label for="organisation">Organisation</label>
+                                    <input type="text" id="organisation" name="trainingOrganisation"
+                                        placeholder="e.g. Coursera">
+                                </div>
+
+                                <div class="input-gap row">
+                                    <div class="col">
+                                        <label for="location">Location</label>
+                                        <input type="text" id="location" name="trainingLocation"
+                                            placeholder="e.g. Mumbai" />
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-check-input" type="checkbox" id="wfh" name="ongoing"
+                                            value="yes">
+                                        <input type="hidden" name="ongoing" value="no">
+                                        <label for="wfh">currently ongoing</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-gap row">
+                                    <div class="col">
+                                        <label for="startDate">Start date</label>
+                                        <input class="form-control" type="date" id="startDate" name="trainingStartDate"
+                                            placeholder="Choose date" />
+                                    </div>
+                                    <div class="col">
+                                        <label for="endDate">End date</label>
+                                        <input class="form-control" type="date" name="trainingEndDate" id="endDate"
+                                            placeholder="Choose date" />
+                                    </div>
+                                </div>
+
+                                <div class="input-gap">
+                                    <label for="disc">Discription</label>
+                                    <textarea maxlength="500" name="trainingDisc" id="disc" cols="10" rows="8"
+                                        placeholder="Short discription about training."></textarea>
+                                </div>
+
+                            </div>
+                            <div class="btn-div">
+                                <button class="btn btn-outline-info" type="submit">save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

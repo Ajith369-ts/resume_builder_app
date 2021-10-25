@@ -7,7 +7,6 @@ const fs = require("fs");
 
 const { validationResult } = require("express-validator");
 
-exports.postTrainingDetails = (req, res, next) => {};
 
 exports.postTrainingDetails = (req, res, next) => {
   Details.findOne({ _id: "61423166f70a347a85d1c85d" })
@@ -20,7 +19,7 @@ exports.postTrainingDetails = (req, res, next) => {
           ongoing: req.body.ongoing,
           startDate: req.body.trainingStartDate,
           endDate: req.body.trainingEndDate,
-          discription: req.body.trainingDisc,
+          disc: req.body.trainingDisc,
         });
       } else {
         const details = new Details({
@@ -32,7 +31,7 @@ exports.postTrainingDetails = (req, res, next) => {
               ongoing: req.body.ongoing,
               startDate: req.body.trainingStartDate,
               endDate: req.body.trainingEndDate,
-              discription: req.body.trainingDisc,
+              disc: req.body.trainingDisc,
             },
           ],
         });
@@ -53,16 +52,16 @@ exports.postEditTrainingDetails = (req, res, next) => {
 
   Details.findOne({ _id: "61423166f70a347a85d1c85d" })
     .then((result) => {
-      result.internshipDetails.pull({ _id: editDetailsId });
+      result.trainingDetails.pull({ _id: editDetailsId });
 
-      result.internshipDetails.push({
-        internProfile: req.body.internProfile,
-        internOrganisation: req.body.internOrganisation,
-        internLocation: req.body.internLocation,
-        workFrom: req.body.wfh,
-        startDate: req.body.internStartDate,
-        endDate: req.body.internEndDate,
-        discription: req.body.internDiscription,
+      result.trainingDetails.push({
+        trainProgram: req.body.trainProgram,
+        trainingOrganisation: req.body.trainingOrganisation,
+        trainingLocation: req.body.trainingLocation,
+        ongoing: req.body.ongoing,
+        startDate: req.body.trainingStartDate,
+        endDate: req.body.trainingEndDate,
+        discription: req.body.trainingDisc,
       });
 
       return result.save();
@@ -74,3 +73,16 @@ exports.postEditTrainingDetails = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.trainingOldContent = (req, res, next) => {
+  const editContentId = req.params.editContentId;
+
+  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+    .then((result) => {
+      const data = result.trainingDetails.id(editContentId);
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
