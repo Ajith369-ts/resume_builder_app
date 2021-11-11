@@ -11,9 +11,6 @@ exports.getPDF = (req, res, next) => {
   const resumeName = "resume" + ".pdf";
   const resumePath = path.join("data", "resumes", resumeName);
 
-  let distance;
-  let headingDistance;
-
   Details.findOne({ _id: downloadId })
     .then((data) => {
       const pdfDoc = new PDFDocument({
@@ -58,28 +55,26 @@ exports.getPDF = (req, res, next) => {
         }
       );
 
-      if (data.educationDetails) {
+      // Functions
+      const detailsHeading = (heading) => {
         pdfDoc.moveDown(1.7);
         pdfDoc
           .fillColor("#2c8bde")
           .font("Helvetica-Bold")
           .fontSize(10.5)
-          .text("EDUCATION QUALIFICATION", {
+          .text(heading, {
             width: 280,
             align: "left",
           });
+      };
+
+      if (data.educationDetails) {
+        detailsHeading("EDUCATION QUALIFICATION");
       }
 
       if (data.internshipDetails) {
-        pdfDoc.moveDown(1.7);
-        pdfDoc
-          .fillColor("#2c8bde")
-          .font("Helvetica-Bold")
-          .fontSize(10.5)
-          .text("INTERNSHIP", {
-            width: 280,
-            align: "left",
-          });
+
+        detailsHeading("INTERNSHIP");
 
         data.internshipDetails.forEach((element) => {
           pdfDoc.moveDown(1);
@@ -111,6 +106,8 @@ exports.getPDF = (req, res, next) => {
         });
       }
 
+
+      // Right side column
       pdfDoc
         .fontSize(10.5)
         .font("Helvetica")
@@ -120,12 +117,13 @@ exports.getPDF = (req, res, next) => {
         });
 
       pdfDoc.moveDown(0.2);
-      pdfDoc.text("Email : ", {
-        align: "left",
-        continued: true,
-      })
-      .fillColor("blue")
-      .text("rahulxxx@gmail.com");
+      pdfDoc
+        .text("Email : ", {
+          align: "left",
+          continued: true,
+        })
+        .fillColor("blue")
+        .text("rahulxxx@gmail.com");
 
       pdfDoc.moveDown(0.2);
       pdfDoc

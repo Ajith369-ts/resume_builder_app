@@ -8,17 +8,40 @@ const app = express();
 
 const ejs = require("ejs");
 
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
+
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// User modal
+const User = require("./models/user");
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 const resumeAppRoutes = require("./routes/resume-app");
 const detailsRoutes = require("./routes/details");
+const authRoutes = require("./routes/auth");
 const errorRoute = require("./routes/404error");
 
 app.use(resumeAppRoutes);
 app.use(detailsRoutes);
+app.use(authRoutes);
 app.use(errorRoute);
 
 app.get("/", (req, res, next) => {

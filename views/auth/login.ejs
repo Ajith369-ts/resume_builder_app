@@ -1,0 +1,31 @@
+<%- include("../includes/header") %>
+
+<link rel="stylesheet" href="/CSS/form.css">
+
+</head>
+
+<body>
+    <section class="section-form">
+        <div class="login__form">
+            <form class="form" action="/login" method="post">
+            
+                <div class="form__group">
+                    <input type="email" id="email" class="form__input" name="username" placeholder="Email">
+                    <label for="email" class="form__label">Email</label>
+                </div>
+
+                <div class="form__group">
+                    <input type="password" id="password" class="form__input" name="password" placeholder="Password">
+                    <label for="password" class="form__label">Password</label>
+                </div>
+
+                <div class="form__group">
+                    <button type="submit" class="btn">login</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</body>
+
+<%- include("../includes/footer") %>

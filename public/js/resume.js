@@ -18,6 +18,36 @@ const deleteBox = (btn) => {
     });
 };
 
+const personalDetailOldInput = (btn) => {
+  const editId = btn.parentNode.querySelector("[name='editId']").value;
+  const personalModal = document.getElementById("editUserDetailModal");
+
+  personalModal.querySelector("[name='editDetailsId']").value = editId;
+
+  fetch("/personalOldContent/" + editId, {
+    method: "POST",
+  })
+  .then((result) => {
+    return result.json();
+  })
+  .then((data) => {
+    console.log(data);
+    personalModal.querySelector("[name='first_name']").value =
+      data.firstName;
+    personalModal.querySelector("[name='last_name']").value =
+      data.lastName;
+    personalModal.querySelector("[name='phoneNum']").value =
+      data.phoneNo;
+    personalModal.querySelector("[name='emailId']").value =
+      data.email;
+    personalModal.querySelector("[name='address']").value =
+      data.address;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
 const internOldInput = (btn) => {
   const editId = btn.parentNode.querySelector("[name='editId']").value;
   const internModal = document.getElementById("editInternDetailModal");
@@ -37,7 +67,8 @@ const internOldInput = (btn) => {
         data.internOrganisation;
       internModal.querySelector("[name='internLocation']").value =
         data.internLocation;
-      internModal.querySelector("[name='wfh']").value = data.workFrom[0];
+      internModal.querySelector("[name='wfh']").value = 
+        data.workFrom[0];
       internModal.querySelector("[name='internStartDate']").value =
         data.startDate.substring(0, 10);
       internModal.querySelector("[name='internEndDate']").value =
@@ -69,7 +100,8 @@ const trainingOldInput = (btn) => {
         data.trainingOrganisation;
       internModal.querySelector("[name='trainingLocation']").value =
         data.trainingLocation;
-      internModal.querySelector("[name='ongoing']").value = data.ongoing[0];
+      internModal.querySelector("[name='ongoing']").value = 
+        data.ongoing[0];
       internModal.querySelector("[name='trainingStartDate']").value =
         data.startDate.substring(0, 10);
       internModal.querySelector("[name='trainingEndDate']").value =

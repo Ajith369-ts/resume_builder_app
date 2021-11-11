@@ -213,3 +213,7 @@ h4 {
   color: #333;
   font-size: 1.35rem;
 }
+
+.checkbox-input {
+  align-self: end;
+}

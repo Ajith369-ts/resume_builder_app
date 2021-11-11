@@ -8,7 +8,7 @@ const fs = require("fs");
 const { validationResult } = require("express-validator");
 
 exports.postInternDetails = (req, res, next) => {
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       if (result.internshipDetails) {
         result.internshipDetails.push({
@@ -49,7 +49,7 @@ exports.postInternDetails = (req, res, next) => {
 exports.postEditInternDetails = (req, res, next) => {
   const editDetailsId = req.body.editDetailsId;
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       result.internshipDetails.pull({ _id: editDetailsId });
 
@@ -76,7 +76,7 @@ exports.postEditInternDetails = (req, res, next) => {
 exports.internOldContent = (req, res, next) => {
   const editContentId = req.params.editContentId;
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       const data = result.internshipDetails.id(editContentId);
       res.status(200).json(data);

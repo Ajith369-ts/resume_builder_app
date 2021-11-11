@@ -8,6 +8,7 @@ const fs = require("fs");
 const { validationResult } = require("express-validator");
 
 exports.getFullDetails = (req, res, next) => {
+
   const link = ["personal", "intern", "training"];
 
   const links = [
@@ -43,7 +44,7 @@ exports.getFullDetails = (req, res, next) => {
     },
   ];
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       const user = result.personalDetails;
       const intern = result.internshipDetails;
@@ -78,7 +79,7 @@ exports.deleteItems = (req, res, next) => {
   const contentId = req.params.contentId;
   const delId = req.params.delId;
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       result[`${contentId}`].pull({ _id: delId });
       return result.save();
