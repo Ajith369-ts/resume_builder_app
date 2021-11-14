@@ -10,7 +10,7 @@
             </div>
 
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="/education/postGrad" method="POST">
                     <div class="formControl container">
                         <div class="input-gap row">
                             <p>Post graduation status</p>
@@ -24,34 +24,34 @@
                             </div>
                         </div>
                         <div class="input-gap">
-                            <label for="">College</label>
-                            <input type="text" placeholder="e.g. Hindu College " />
+                            <label for="clgName">College</label>
+                            <input type="text" id="clgName" name="clgName" placeholder="e.g. Hindu College " />
                         </div>
                         <div class="input-gap row">
                             <div class="col">
-                                <label for="">Start Year</label>
-                                <input type="number" min="1900" max="2099" />
+                                <label for="startYear">Start Year</label>
+                                <input type="number" id="startYear" name="startYear" min="1900" max="2099" />
                             </div>
                             <div class="col">
-                                <label for="">End Year</label>
-                                <input type="number" min="1900" max="2099" />
+                                <label for="endYear">End Year</label>
+                                <input type="number" id="endYear" name="endYear" min="1900" max="2099" />
                             </div>
                         </div>
                         <div class="input-gap row">
                             <div class="col">
-                                <label for="">Degree</label>
-                                <input type="text" placeholder="e.g. MBA" />
+                                <label for="degree">Degree</label>
+                                <input type="text" id="degree" name="degree" placeholder="e.g. MBA" />
                             </div>
                             <div class="col">
-                                <label for="">Stream</label>
-                                <input type="text" placeholder="e.g. Finance" />
+                                <label for="stream">Stream</label>
+                                <input type="text" id="stream" name="stream" placeholder="e.g. Finance" />
                             </div>
                         </div>
                         <div class="input-gap row">
                             <div class="col">
                                 <label for="scale">Performance Scale</label>
                                 <select class="form-select" name="perf_scale" id="scale">
-                                    <option value="percent">Percentage</option>
+                                    <option value="Percentage">Percentage</option>
                                     <option value="10">CGPA (scale of 10)</option>
                                     <option value="5">CGPA (scale of 5)</option>
                                 </select>
@@ -61,6 +61,9 @@
                                 <input type="number" id="perf" placeholder="0.00" />
                             </div>
                         </div>
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn btn-outline-info" type="submit">save</button>
                     </div>
                 </form>
             </div>

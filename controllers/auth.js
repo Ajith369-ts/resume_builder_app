@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const Details = require("../models/details");
 
-const { ObjectId } = require('mongodb');
 const passport = require("passport");
 
 exports.getRegister = (req, res, next) => {

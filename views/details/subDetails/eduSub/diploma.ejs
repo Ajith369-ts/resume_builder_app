@@ -10,7 +10,7 @@
             </div>
 
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="/education/diploma" method="POST">
                     <div class="formControl container">
                         <div class="input-gap row">
                             <p>Diploma status</p>
@@ -25,29 +25,29 @@
                         </div>
                         <div class="input-gap">
                             <label for="">College</label>
-                            <input type="text" placeholder="e.g. Hindu College " />
+                            <input type="text" name="clgName" placeholder="e.g. Hindu College " />
                         </div>
                         <div class="input-gap row">
                             <div class="col">
                                 <label for="">Start Year</label>
-                                <input type="number" min="1900" max="2099" />
+                                <input type="number" name="startYear" min="1900" max="2099" />
                             </div>
                             <div class="col">
                                 <label for="">End Year</label>
-                                <input type="number" min="1900" max="2099" />
+                                <input type="number" name="endYear" min="1900" max="2099" />
                             </div>
                         </div>
                         <div class="input-gap">
                             <div>
                                 <label for="">Stream</label>
-                                <input type="text" placeholder="e.g. creative writting" />
+                                <input type="text" name="stream" placeholder="e.g. creative writting" />
                             </div>
                         </div>
                         <div class="input-gap row">
                             <div class="col">
                                 <label for="scale">Performance Scale</label>
                                 <select class="form-select" name="perf_scale" id="scale">
-                                    <option value="percent">Percentage</option>
+                                    <option value="Percentage">Percentage</option>
                                     <option value="10">CGPA (scale of 10)</option>
                                     <option value="5">CGPA (scale of 5)</option>
                                 </select>
@@ -57,6 +57,9 @@
                                 <input type="number" id="perf" placeholder="0.00" />
                             </div>
                         </div>
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn btn-outline-info" type="submit">save</button>
                     </div>
                 </form>
             </div>

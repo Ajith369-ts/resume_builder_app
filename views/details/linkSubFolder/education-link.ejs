@@ -1,0 +1,60 @@
+<div class="details_table row">
+  <div class="col">
+    <h4>EDUCATION</h4>
+  </div>
+  <div class="col col-7">
+    <% subEdu.forEach(element=> { %> <% if (education[`${element}`] != undefined && education[`${element}`].length != 0)
+    { %>
+    <div class="detailDiscBox" style="position: relative">
+      <div class="icon-btn-position">
+        <!-- Edit btn -->
+        <input type="hidden" name="editId" value="<%= element._id %>" />
+        <button
+          type="button"
+          class="btn delbtn"
+          onclick="internOldInput(this)"
+          data-bs-toggle="modal"
+          data-bs-target="#editInternDetailModal"
+        >
+          <i class="fas fa-pen"></i>
+        </button>
+        <!-- Delete btn -->
+        <input type="hidden" name="delId" value="<%= education[`${element}`]._id %>" />
+        <button
+          type="button"
+          class="btn delbtn"
+          value="educationDetails"
+          onclick="deleteBox(this)"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+      <div class="detailDisc">
+        <p class="line bold_detail"><%= education[`${element}`][0].degree %>,</p>
+        <p class="line">
+          <%= education[`${element}`][0].stream %> (<%=
+          education[`${element}`][0].startYear.toString().slice(11, 15) + " - " +
+          education[`${element}`][0].endYear.toString().slice(11, 15) %>)
+        </p>
+        <p class="line">
+          <%= education[`${element}`][0].clgName %>, <%=
+          (education[`${element}`][0].perf_scale !="percentage" ) ? "CGPA" :
+          education[`${element}`][0].perf_scale; %> : <%=
+          education[`${element}`][0].mark %> <%=
+          (education[`${element}`][0].perf_scale=="percentage" ) ? "%" :
+          `/${education[`${element}`][0].perf_scale}`; %>
+        </p>
+      </div>
+    </div>
+    <% } %> <% }) %>
+    <button
+      type="button"
+      class="btn button"
+      data-bs-toggle="modal"
+      data-bs-target="#eduDetailModal"
+      onclick="clearInput()"
+    >
+      + Add education
+    </button>
+  </div>
+</div>

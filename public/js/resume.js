@@ -20,7 +20,10 @@ const deleteBox = (btn) => {
 
 const personalDetailOldInput = (btn) => {
   const editId = btn.parentNode.querySelector("[name='editId']").value;
-  const personalModal = document.getElementById("editUserDetailModal");
+  const personalModal = document.getElementById("userDetailModal");
+  const form = personalModal.querySelector("#userDetailsForm");
+
+  form.action = "/personal/editDetails";
 
   personalModal.querySelector("[name='editDetailsId']").value = editId;
 
@@ -50,7 +53,10 @@ const personalDetailOldInput = (btn) => {
 
 const internOldInput = (btn) => {
   const editId = btn.parentNode.querySelector("[name='editId']").value;
-  const internModal = document.getElementById("editInternDetailModal");
+  const internModal = document.getElementById("internDetailModal");
+  const form = internModal.querySelector("#internForm");
+
+  form.action = "/internship/editDetails";
 
   internModal.querySelector("[name='editDetailsId']").value = editId;
 
@@ -83,9 +89,12 @@ const internOldInput = (btn) => {
 
 const trainingOldInput = (btn) => {
   const editId = btn.parentNode.querySelector("[name='editId']").value;
-  const internModal = document.getElementById("editTrainingDetailModal");
+  const trainingModal = document.getElementById("trainingDetailModal");
+  const form = trainingModal.querySelector("#trainingForm");
 
-  internModal.querySelector("[name='editDetailsId']").value = editId;
+  form.action = "/training/editDetails";
+
+  trainingModal.querySelector("[name='editDetailsId']").value = editId;
 
   fetch("/trainingOldContent/" + editId, {
     method: "POST",
@@ -94,19 +103,19 @@ const trainingOldInput = (btn) => {
       return result.json();
     })
     .then((data) => {
-      internModal.querySelector("[name='trainProgram']").value =
+      trainingModal.querySelector("[name='trainProgram']").value =
         data.trainProgram;
-      internModal.querySelector("[name='trainingOrganisation']").value =
+      trainingModal.querySelector("[name='trainingOrganisation']").value =
         data.trainingOrganisation;
-      internModal.querySelector("[name='trainingLocation']").value =
+      trainingModal.querySelector("[name='trainingLocation']").value =
         data.trainingLocation;
-      internModal.querySelector("[name='ongoing']").value = 
+      trainingModal.querySelector("[name='ongoing']").value = 
         data.ongoing[0];
-      internModal.querySelector("[name='trainingStartDate']").value =
+      trainingModal.querySelector("[name='trainingStartDate']").value =
         data.startDate.substring(0, 10);
-      internModal.querySelector("[name='trainingEndDate']").value =
+      trainingModal.querySelector("[name='trainingEndDate']").value =
         data.endDate.substring(0, 10);
-      internModal.querySelector("[name='trainingDisc']").value = data.disc;
+      trainingModal.querySelector("[name='trainingDisc']").value = data.disc;
     })
     .catch((err) => {
       console.log(err);
@@ -115,6 +124,13 @@ const trainingOldInput = (btn) => {
 
 const clearInput = () => {
   const inputField = document.querySelectorAll(".modal-body");
+  const personalForm = document.getElementById("userDetailModal").querySelector("#userDetailsForm");
+  const internForm = document.getElementById("internDetailModal").querySelector("#internForm");
+  const trainingForm = document.getElementById("trainingDetailModal").querySelector("#trainingForm");
+
+  personalForm.action = "/personal/details";
+  internForm.action = "/internship/details";
+  trainingForm.action = "/training/details";
 
   inputField.forEach((element) => {
     const input = element.querySelectorAll("input");

@@ -11,7 +11,8 @@ body {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: 'Inter', sans-serif;
   background-color: #448fff;
   /* background: linear-gradient(45deg, rgba(10,108,220,1) 0%, rgba(82,168,199,1) 50%); */
   background-repeat: no-repeat;
@@ -41,12 +42,7 @@ hr {
   margin: 1rem auto;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
   font-family: "Archivo", sans-serif;
 }
 
@@ -121,7 +117,7 @@ textarea {
 .button {
   color: #008bdc;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.9rem;
   line-height: 1.15;
   cursor: pointer;
 }
@@ -147,9 +143,9 @@ textarea {
 }
 
 h4 {
-  color: rgb(77, 77, 77);
+  color: #666;
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding: 5px 0;
 }
 
@@ -184,8 +180,14 @@ h4 {
 
 .line {
   color: #666;
-  font-size: 14px;
-  margin-bottom: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 3.4px;
+}
+
+.bold_detail {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #333;
 }
 
 .detailDisc {
@@ -198,7 +200,7 @@ h4 {
 }
 
 .user-detail .line {
-  font-size: inherit;
+  /* font-size: inherit; */
   color: #333;
 }
 
@@ -211,7 +213,7 @@ h4 {
   display: inline-block;
   font-weight: 600;
   color: #333;
-  font-size: 1.35rem;
+  font-size: 1.65rem;
 }
 
 .checkbox-input {

@@ -1,135 +1,164 @@
 const mongoose = require("mongoose");
 
-const detailsSchema = new mongoose.Schema({
+const eduFormatSchema = new mongoose.Schema({
+  eduName: {
+    type: String,
+  },
+  status: {
+    type: String,
+  },
+  clgName: {
+    type: String,
+  },
+  startYear: {
+    type: Date,
+  },
+  endYear: {
+    type: Date,
+  },
+  degree: {
+    type: String,
+  },
+  stream: {
+    type: String,
+  },
+  perf_scale: {
+    type: String,
+  },
+  mark: {
+    type: Number,
+  },
+});
 
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+const detailsSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  // Personal Details
+  personalDetails: [
+    {
+      firstName: {
+        type: String,
+      },
+      lastName: {
+        type: String,
+      },
+      phoneNo: {
+        type: String,
+      },
+      email: {
+        type: String,
+      },
+      address: {
+        type: String,
+      },
     },
-    // Personal Details
-    personalDetails: [{
-        firstName: {
-          type: String
-        },
-        lastName: {
-          type: String
-        },
-        phoneNo: {
-          type: String
-        },
-        email: {
-          type: String
-        },
-        address: {
-          type: String
-        }
-    }],
-    // Education details
-    // educationDetails: {
-    //   edu: [{
-    //     status: {
-    //       type: String
-    //     },
-    //     clgName: {
-    //       type: String
-    //     },
-    //     startYear: {
-    //       type: Number
-    //     },
-    //     endYear: {
-    //       type: Number
-    //     },
-    //     degree: {
-    //       type: String
-    //     },
-    //     stream: {
-    //       type: String
-    //     },
-    //     perf_scale: {
-    //       type: String
-    //     },
-    //     mark: {
-    //       type: Number
-    //     }
-    //   }]
-    // },
-    
-    // Internship detaiils
-    internshipDetails: [{
+  ],
+
+  // Education details
+  educationDetails: {
+    beDeg: [
+      {
+        type: eduFormatSchema,
+      },
+    ],
+    diploma: [
+      {
+        type: eduFormatSchema,
+      },
+    ],
+    postGrad: [
+      {
+        type: eduFormatSchema,
+      },
+    ],
+    secondary: [
+      {
+        type: eduFormatSchema,
+      },
+    ],
+  },
+
+  // Internship detaiils
+  internshipDetails: [
+    {
       internProfile: {
-        type: String
+        type: String,
       },
       internOrganisation: {
-        type: String
+        type: String,
       },
       internLocation: {
-        type: String
+        type: String,
       },
       workFrom: {
-        type: Array
+        type: Array,
       },
       startDate: {
-        type: Date
+        type: Date,
       },
       endDate: {
-        type: Date
+        type: Date,
       },
       discription: {
-        type: String
-      }
-    }],
-
-    // Position of responsibility
-    responsibilityDetails: {
-      disc: {
-        type: String
-      }
+        type: String,
+      },
     },
+  ],
 
-    // Training/Courses Details
-    trainingDetails: [{
+  // Position of responsibility
+  responsibilityDetails: {
+    disc: {
+      type: String,
+    },
+  },
+
+  // Training/Courses Details
+  trainingDetails: [
+    {
       trainProgram: {
-        type: String
+        type: String,
       },
       trainingOrganisation: {
-        type: String
+        type: String,
       },
       trainingLocation: {
-        type: String
+        type: String,
       },
       ongoing: {
-        type: String
+        type: String,
       },
       startDate: {
-        type: Date
+        type: Date,
       },
       endDate: {
-        type: Date
+        type: Date,
       },
       disc: {
-        type: String
-      }
-    }],
+        type: String,
+      },
+    },
+  ],
 
-    // Academic/personal Projects
-    projectDetails: {
-      title: {
-        type: String
-      },
-      startDate: {
-        type: Date
-      },
-      endDate: {
-        type: Date
-      },
-      disc: {
-        type: String
-      },
-      projectLink: {
-        type: String
-      }
-    }
-
+  // Academic/personal Projects
+  projectDetails: {
+    title: {
+      type: String,
+    },
+    startDate: {
+      type: Date,
+    },
+    endDate: {
+      type: Date,
+    },
+    disc: {
+      type: String,
+    },
+    projectLink: {
+      type: String,
+    },
+  },
 });
 
 module.exports = mongoose.model("Detail", detailsSchema);

@@ -11,7 +11,7 @@ exports.getPDF = (req, res, next) => {
   const resumeName = "resume" + ".pdf";
   const resumePath = path.join("data", "resumes", resumeName);
 
-  Details.findOne({ _id: downloadId })
+  Details.findOne({ userId: downloadId })
     .then((data) => {
       const pdfDoc = new PDFDocument({
         size: "LETTER",
@@ -24,36 +24,40 @@ exports.getPDF = (req, res, next) => {
 
       pdfDoc.pipe(res);
 
-      pdfDoc.fontSize(20);
-      pdfDoc
-        .font("Helvetica-Bold")
-        .text(
-          data.personalDetails[0].firstName.toUpperCase() +
-            " " +
-            data.personalDetails[0].lastName.toUpperCase(),
-          {
-            align: "left",
-            lineGap: 1.5,
-          }
-        );
-
-      pdfDoc.fontSize(10);
-      pdfDoc
-        .font("Helvetica")
-        .text("4th year B.Tech, Computer Science & Engineering", {
-          lineGap: 1.5,
+      if (data.personalDetails) {
+        data.personalDetails.forEach((element) => {
+          pdfDoc.fontSize(20);
+          pdfDoc
+            .font("Helvetica-Bold")
+            .text(
+              element.firstName.toUpperCase() +
+                " " +
+                element.lastName.toUpperCase(),
+              {
+                align: "left",
+                lineGap: 1.5,
+              }
+            );
         });
 
-      pdfDoc.text("IIT Madras");
+        pdfDoc.fontSize(10);
+        pdfDoc
+          .font("Helvetica")
+          .text("4th year B.Tech, Computer Science & Engineering", {
+            lineGap: 1.5,
+          });
 
-      pdfDoc.moveDown(1.25);
-      pdfDoc.text(
-        "----------------------------------------------------------------------------------------------------------------------",
-        {
-          width: 510,
-          align: "center",
-        }
-      );
+        pdfDoc.text("IIT Madras");
+
+        pdfDoc.moveDown(1.25);
+        pdfDoc.text(
+          "----------------------------------------------------------------------------------------------------------------------",
+          {
+            width: 510,
+            align: "center",
+          }
+        );
+      }
 
       // Functions
       const detailsHeading = (heading) => {
@@ -73,7 +77,6 @@ exports.getPDF = (req, res, next) => {
       }
 
       if (data.internshipDetails) {
-
         detailsHeading("INTERNSHIP");
 
         data.internshipDetails.forEach((element) => {
@@ -105,7 +108,6 @@ exports.getPDF = (req, res, next) => {
           pdfDoc.fontSize(12.2).fillColor("#6e6e6e").text(element.discription);
         });
       }
-
 
       // Right side column
       pdfDoc

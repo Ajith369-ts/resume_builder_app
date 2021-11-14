@@ -6,10 +6,10 @@
 
         <!-- Edit btn -->
         <input type="hidden" name="editId" value="<%= userDetails[0]._id %>">
-        <button type="button" class="btn delbtn" onclick="personalDetailOldInput(this)" data-bs-toggle="modal" data-bs-target="#editUserDetailModal"><i class="fas fa-pen"></i></button>
+        <button type="button" class="btn delbtn" onclick="personalDetailOldInput(this)" data-bs-toggle="modal" data-bs-target="#userDetailModal"><i class="fas fa-pen"></i></button>
 
+        <p class="line" style="font-weight: 600;"><%= userDetails[0].email %></p>
         <p class="line"><%= userDetails[0].phoneNo %></p>
-        <p class="line"><%= userDetails[0].email %></p>
         <p class="line"><%= userDetails[0].address %></p>
     </div>
 

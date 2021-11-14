@@ -1,10 +1,5 @@
 const Details = require("../../models/details");
 
-const path = require("path");
-
-const PDFDocument = require("pdfkit");
-const fs = require("fs");
-
 const { validationResult } = require("express-validator");
 
 exports.postInternDetails = (req, res, next) => {
@@ -49,28 +44,53 @@ exports.postInternDetails = (req, res, next) => {
 exports.postEditInternDetails = (req, res, next) => {
   const editDetailsId = req.body.editDetailsId;
 
-  Details.findOne({ userId: req.user._id.toString() })
-    .then((result) => {
-      result.internshipDetails.pull({ _id: editDetailsId });
+  Details.findOneAndUpdate(
+    {
+      userId: req.user._id.toString(),
+      "internshipDetails._id": editDetailsId,
+    },
+    {
+      $set: {
+        "internshipDetails.$.internProfile": req.body.internProfile,
+        "internshipDetails.$.internOrganisation": req.body.internOrganisation,
+        "internshipDetails.$.internLocation": req.body.internLocation,
+        "internshipDetails.$.workFrom": req.body.wfh,
+        "internshipDetails.$.startDate": req.body.internStartDate,
+        "internshipDetails.$.endDate": req.body.internEndDate,
+        "internshipDetails.$.discription": req.body.internDiscription,
+      },
+    },
+    function (err) {
+      if (!err) {
+        return res.redirect("/details");
+      } else {
+        console.log(err);
+      }
+    }
+  );
 
-      result.internshipDetails.push({
-        internProfile: req.body.internProfile,
-        internOrganisation: req.body.internOrganisation,
-        internLocation: req.body.internLocation,
-        workFrom: req.body.wfh,
-        startDate: req.body.internStartDate,
-        endDate: req.body.internEndDate,
-        discription: req.body.internDiscription,
-      });
+  // Details.findOne({ userId: req.user._id.toString() })
+  //   .then((result) => {
+  //     result.internshipDetails.pull({ _id: editDetailsId });
 
-      return result.save();
-    })
-    .then(() => {
-      res.redirect("/details");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  //     result.internshipDetails.push({
+  //       internProfile: req.body.internProfile,
+  //       internOrganisation: req.body.internOrganisation,
+  //       internLocation: req.body.internLocation,
+  //       workFrom: req.body.wfh,
+  //       startDate: req.body.internStartDate,
+  //       endDate: req.body.internEndDate,
+  //       discription: req.body.internDiscription,
+  //     });
+
+  //     return result.save();
+  //   })
+  //   .then(() => {
+  //     res.redirect("/details");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 };
 
 exports.internOldContent = (req, res, next) => {

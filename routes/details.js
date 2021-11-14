@@ -6,6 +6,7 @@ const router = express.Router();
 
 const detailsController = require("../controllers/details");
 const personalDetailsController = require("../controllers/details/personal");
+const educationDetailsController = require("../controllers/details/education");
 const internDetailsController = require("../controllers/details/internship");
 const trainingDetailsController = require("../controllers/details/training");
 const downloadResume = require("../controllers/getPDF");
@@ -13,7 +14,7 @@ const isAuth = require("../middleware/isAuth");
 
 router.get("/details", isAuth, detailsController.getFullDetails);
 
-router.delete("/deletedetails/:contentId/:delId", detailsController.deleteItems);
+router.delete("/deletedetails/:contentId/:delId", isAuth, detailsController.deleteItems);
 
 // Personal Details
 router.post(
@@ -24,6 +25,7 @@ router.post(
     body("emailId", "Enter a valid email.").isEmail().normalizeEmail(),
     body("address", "This field should not be empty.").notEmpty()
   ],
+  isAuth,
   personalDetailsController.postPersonalDetails
 );
 
@@ -33,14 +35,21 @@ router.post("/personal/editDetails",
     body("phoneNum", "Enter a valid phone number.").isMobilePhone(),
     body("emailId", "Enter a valid email.").isEmail().normalizeEmail(),
     body("address", "This field should not be empty.").notEmpty()
-  ], 
+  ],
+  isAuth, 
   personalDetailsController.postEditUserDetails
 );
 
-router.post("/personalOldContent/:editContentId", personalDetailsController.personalOldContent);
+router.post("/personalOldContent/:editContentId", isAuth, personalDetailsController.personalOldContent);
 
 // Educations
-router.post("/education/details", detailsController.postEducationDetails);
+router.post("/education/beDeg", isAuth, educationDetailsController.postBeDeg);
+
+router.post("/education/diploma", isAuth, educationDetailsController.postDiploma);
+
+router.post("/education/postGrad", isAuth, educationDetailsController.postGrad);
+
+router.post("/education/secondary", isAuth, educationDetailsController.postSecondary);
 
 // Internships
 router.post("/internship/details", isAuth, internDetailsController.postInternDetails);
@@ -50,13 +59,13 @@ router.post("/internship/editDetails", isAuth, internDetailsController.postEditI
 router.post("/internOldContent/:editContentId", isAuth, internDetailsController.internOldContent);
 
 // Training and courses
-router.post("/training/details", trainingDetailsController.postTrainingDetails);
+router.post("/training/details", isAuth, trainingDetailsController.postTrainingDetails);
 
-router.post("/training/editDetails", trainingDetailsController.postEditTrainingDetails);
+router.post("/training/editDetails", isAuth, trainingDetailsController.postEditTrainingDetails);
 
-router.post("/trainingOldContent/:editContentId", trainingDetailsController.trainingOldContent);
+router.post("/trainingOldContent/:editContentId", isAuth, trainingDetailsController.trainingOldContent);
 
 // PDF Download
-router.get("/download/:downloadId", downloadResume.getPDF);
+router.get("/download/:downloadId", isAuth, downloadResume.getPDF);
 
 module.exports = router;

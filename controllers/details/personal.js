@@ -1,10 +1,5 @@
 const Details = require("../../models/details");
 
-const path = require("path");
-
-const PDFDocument = require("pdfkit");
-const fs = require("fs");
-
 const { validationResult } = require("express-validator");
 
 exports.postPersonalDetails = (req, res, next) => {
@@ -15,28 +10,29 @@ exports.postPersonalDetails = (req, res, next) => {
     return res.redirect("/details");
   }
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
-    .then((result) => {
-      if (result.personalDetails.length == 0) {
-        result.personalDetails.push({
+  Details.findOneAndUpdate(
+    {
+      userId: req.user._id.toString(),
+    },
+    {
+      $set: {
+        personalDetails: {
           firstName: req.body.first_name,
           lastName: req.body.last_name,
           phoneNo: req.body.phoneNum,
           email: req.body.emailId,
           address: req.body.address,
-        });
+        },
+      },
+    },
+    (err) => {
+      if (!err) {
+        return res.redirect("/details");
       } else {
-        return;
+        console.log(err);
       }
-
-      return result.save();
-    })
-    .then((result) => {
-      res.redirect("/details");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    }
+  );
 };
 
 exports.postEditUserDetails = (req, res, next) => {
@@ -47,7 +43,7 @@ exports.postEditUserDetails = (req, res, next) => {
     return res.redirect("/details");
   }
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       result.personalDetails.pull({ _id: editDetailsId });
 
@@ -67,12 +63,12 @@ exports.postEditUserDetails = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
 exports.personalOldContent = (req, res, next) => {
   const editContentId = req.params.editContentId;
 
-  Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+  Details.findOne({ userId: req.user._id.toString() })
     .then((result) => {
       const data = result.personalDetails.id(editContentId);
       res.status(200).json(data);
@@ -82,7 +78,7 @@ exports.personalOldContent = (req, res, next) => {
     });
 };
 
-//   Details.findOne({ _id: "61423166f70a347a85d1c85d" })
+//   Details.findOne({ userId: req.user._id.toString() })
 //     .then((result) => {
 //       if (result.personalDetails == null) {
 //         console.log(result);

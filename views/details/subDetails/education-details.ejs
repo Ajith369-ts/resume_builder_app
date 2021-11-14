@@ -8,8 +8,10 @@
                 <div>
                     <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
                         data-bs-target="#beDegDetailModal">+ Add graduation</button>
-                    <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
-                        data-bs-target="#secDetailModal">+ Add secondary(X)</button>
+                    <% if (education.secondary.length == 0) { %>                    
+                        <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
+                            data-bs-target="#secDetailModal">+ Add secondary(XII)</button>
+                    <% } %>
                     <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
                         data-bs-target="#postDetailModal">+ Add post graduation</button>
                     <button type="button" class="block btn button" data-bs-dismiss="modal" data-bs-toggle="modal"
